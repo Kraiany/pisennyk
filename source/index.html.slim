@@ -5,4 +5,5 @@ title: Список пісень
 ul
 - sitemap.resources.each do |art|
   - if art.data.title && art != current_page
-    li= link_to art.data.title, art.url, class: "song_title"
+    li.btn.btn-primary[class="song_title"]= link_to art.data.title, art.url
+    br
