@@ -50,9 +50,14 @@ p, pre{
 
 }
 pre {
-    border: 0;
+    padding-bottom: 30px;
     text-align: left;
     font-family: Helvetica, sans-serif;
+}
+
+p {
+    margin-top: 10px;
+    margin-bottom: -30px;
 }
 
 
@@ -74,6 +79,6 @@ h1 {
   letter-spacing: -1px;
   text-transform: uppercase;
   text-shadow: 3px 5px 5px rgba(0,0,0, .4);
-  padding: 50px 0 10px;
+  padding: 60px 0 10px;
   margin-top: 40px;
   margin: 0; }
