@@ -1,0 +1,18 @@
+| <!doctype html>
+html
+  head
+    meta[charset="utf-8"]
+    meta[content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"]
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    title
+      = current_page.data.title || "Пісенник"
+    = stylesheet_link_tag "all",     "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+
+    = javascript_include_tag  "all"
+  body class="#{page_classes}"
+    = partial :nav
+    .col-sm-12.col-xs-12.col-md-8.col-md-offset-2
+      h1.text-center= current_page.data.title
+    .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+      pre
+        = yield
