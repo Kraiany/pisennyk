@@ -35,7 +35,7 @@
 Перейти в директорію проекту. І потім:
 
     git clone -b gh-pages git@github.com:Kraiany/pisennyk.git build
-    middelaman build
+    middleman build
     cd build
     git add  -A
     git commit
