@@ -38,6 +38,6 @@
     middelaman build
     cd build
     git add  -A
-    git chechout
+    git commit
       [додати коментар до коміту]
     git push origin gh-pages
