@@ -143,6 +143,7 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
+    translit (0.1.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.0.13)
@@ -163,3 +164,4 @@ DEPENDENCIES
   oj
   slim
   therubyracer
+  translit (~> 0.1)
