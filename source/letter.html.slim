@@ -1,0 +1,12 @@
+---
+layout: layout
+pageable: true
+per_page: 10
+---
+
+
+|h1 Пісні з позначкою  #{tag}
+
+- articles.each do |art|
+  = link_to art.data.title, art.url, class: 'song_title btn btn-primary'
+  br

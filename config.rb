@@ -40,7 +40,8 @@ helpers do
   end
 
   def alphabet
-    ("а".."я").to_a + %w(і ґ є) - %w{ы э ё ъ}
+    #("а".."я").to_a + %w(і ґ є) - %w{ы э ё ъ}
+    ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ю", "Я"]
   end
 
   # Find all articles that have tags.
@@ -66,6 +67,10 @@ helpers do
 
   def tag_path(tag)
     "tags/#{transliterated(tag)}.html"
+  end
+
+  def path_to_letter(letter)
+    "letters/#{transliterated(letter)}.html"
   end
 
   def transliterated(word)
@@ -111,6 +116,11 @@ ready do
   tags.each do |tag|
     articles = with_tag(tag)
     proxy tag_path(tag), "tag.html", locals: { tag: tag, articles: articles}, :ignore => true
+  end
+
+  alphabet.each do |letter|
+    articles = starts_with(letter)
+    proxy path_to_letter(letter), "letter.html", locals: { letter: letter, articles: articles}, :ignore => true
   end
 end
 
