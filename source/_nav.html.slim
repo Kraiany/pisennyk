@@ -10,8 +10,12 @@ nav.navbar.navbar-default.navbar-custom.navbar-fixed-top
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
 
-        li= link_to "/index.html"
-          i.fa.fa-2x.fa-home
 
-        li= link_to "/tags.html"
+        li= link_to "/index.html", class: "btn btn-default btn-nav"
+          i.fa.fa-2x.fa-list
+
+        li= link_to "/letters.html", class: "btn btn-default  btn-nav"
+          i.fa.fa-2x.fa-sort-alpha-asc
+
+        li= link_to "/tags.html", class: "btn btn-default  btn-nav"
           i.fa.fa-2x.fa-tags
