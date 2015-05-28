@@ -1,13 +1,13 @@
 ---
 pageable: true
-per_page: 10
-title2: Позначки (теги)
+layout: simple
+title: Позначки (теги)
 ---
 
 - @title = capture
   i.fa.fa-lg.fa-tags
   =<> current_page.data.title
 
-h1 Етикетки (теги)
-- tag_cloud.map do |tag,size|
-  = link_to tag, tag_path(tag.dup),  style: "font-size: #{size}em;"
+.tag-cloud
+  - tag_cloud.map do |tag,size|
+    = link_to tag, tag_path(tag.dup),  style: "font-size: #{size}em;"
