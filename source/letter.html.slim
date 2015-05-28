@@ -1,0 +1,14 @@
+---
+layout: simple
+---
+
+- @title = capture
+  h1.text-center Пісні що починаються на "#{letter}"
+
+- if articles.empty?
+  h2 Не знадено
+  | Хочете додати?
+- else
+  - articles.each do |art|
+    = link_to art.data.title, art.url, class: 'song_title btn btn-primary'
+    br

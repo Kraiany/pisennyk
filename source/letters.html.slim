@@ -1,0 +1,9 @@
+---
+layout: simple
+title: "Пісні за алфавітом"
+---
+
+center
+  - alphabet.each do |letter|
+    - articles = starts_with(letter)
+    = link_to letter, path_to_letter(letter.dup), class: "letter-button btn btn-primary #{articles.empty? ? 'disabled' : ''}"

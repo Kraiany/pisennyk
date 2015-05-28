@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'slim'
+require 'babosa'
 Slim::Engine.disable_option_validator!
 require 'pry'
 set :encoding, 'utf-8'
@@ -8,38 +9,6 @@ set :css_dir, 'assets/stylesheets'
 set :js_dir, 'assets/javascripts'
 set :images_dir, 'assets/images'
 set :partials_dir, 'partials'
-###
-# Compass
-###
-
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
-
-###
-# Page options, layouts, aliases and proxies
-###
-
-# Per-page layout changes:
-#
-# With no layout
-# page "/path/to/file.html", :layout => false
-#
-# With alternative layout
-# page "/path/to/file.html", :layout => :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
-
-# Proxy pages (https://middlemanapp.com/advanced/dynamic_pages/)
-# proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
-#  :which_fake_page => "Rendering a fake page with a local variable" }
-
-###
-# Helpers
 ###
 
 # Automatic image dimensions on image_tag helper
@@ -50,51 +19,111 @@ configure :development do
   activate :livereload
 end
 
-# Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
-
 set :css_dir, 'stylesheets'
 
 set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-# helpers do
-#   def tag_cloud
-#     size_min, size_max = 12.0, 30.0
+helpers do
 
-#     articles = sitemap.resources.find_all { |res| !res.data.tags.empty? }
+  # Find all songs that have title.
+  def titled
+    sitemap
+      .resources
+      .find_all { |res| !res.data.title.nil? }
+  end
 
-#     # counts = articles.map(&:tags) do |tag, posts|
-#     #   [tag, posts.count]
-#     # end
+  # Find songs that start with a given letter
+  def starts_with(letter)
+    titled.find_all { |art| transliterated(art.dup.data.title[0]) == transliterated(letter.dup) }
+  end
 
-#     # min, max = counts.map(&:last).minmax
+  def alphabet
+    @alphabet ||= "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЮЬЯ".split('')
+  end
 
-#     # weight = counts.map do |name, count|
-#     #   # logarithmic distribution
-#     #   weight = (Math.log(count) - Math.log(min))/(Math.log(max) - Math.log(min))
-#     #   [name, weight]
-#     # end
+  # Find all articles that have tags.
+  def tagged
+    sitemap
+      .resources
+      .find_all { |res| !res.data.tags.nil? }
+  end
 
-#     # weight.sort_by! { rand }
+  def tags
+    tagged
+      .map(&:data)
+      .map(&:tags)
+      .flatten
+      .uniq
+      .compact
+  end
 
-#     # weight.map do |tag|
-#     #   name, weight = tag
-#     #   size = size_min + ((size_max - size_min) * weight).to_f
-#     #   [name, size]
-#     # end
-#   end
+  def with_tag(tag)
+    tagged
+      .find_all {|res| res.data.tags.include? tag }
+  end
 
-# end
+  def tag_path(tag)
+    "tags/#{transliterated(tag)}.html"
+  end
 
-activate :blog do |blog|
-  blog.tag_template = "tag.html"
+  def path_to_letter(letter)
+    "letters/#{transliterated(letter)}.html"
+  end
+
+  def transliterated(word)
+    word.to_slug.transliterate(:ukrainian).to_s
+      .downcase
+      .gsub(/[^A-Za-z0-9]/i,'_')
+  end
+
+
+  def tag_cloud
+    size_min, size_max = 1, 3
+
+    articles = {}
+    tags.each do |tag|
+      articles[tag] = tagged.find_all {|res| res.data.tags.include? tag }
+    end
+
+    counts = articles.map do |tag, posts|
+      [tag, posts.count]
+    end
+
+    min, max = counts.map(&:last).minmax
+
+    weight = counts.map do |name, count|
+      # logarithmic distribution
+      weight = (max == min) ? 0 : (Math.log(count) - Math.log(min))/(Math.log(max) - Math.log(min))
+      [name, weight]
+    end
+
+    weight.sort_by! { rand }
+
+    weight.map do |tag|
+      name, weight = tag
+      size = size_min + ((size_max - size_min) * weight).to_f
+      [name, size]
+    end
+  end
+
 end
+
+
+ready do
+  tags.each do |tag|
+    articles = with_tag(tag)
+    proxy tag_path(tag), "tag.html", locals: { tag: tag, articles: articles}, :ignore => true
+  end
+
+  alphabet.each do |letter|
+    articles = starts_with(letter)
+    proxy path_to_letter(letter), "letter.html", locals: { letter: letter, articles: articles}, :ignore => true
+  end
+end
+
+
 
 # Build-specific configuration
 configure :build do

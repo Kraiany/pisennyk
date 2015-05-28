@@ -1,6 +1,6 @@
 ---
 pageable: true
-per_page: 10
+layout: simple
 title: Позначки (теги)
 ---
 
@@ -8,6 +8,6 @@ title: Позначки (теги)
   i.fa.fa-lg.fa-tags
   =<> current_page.data.title
 
-h2  Скоро буде
-/ - tag_cloud.map do |tag,size|
-/   = link_to tag, tag_path(tag), style: "font-size: #{size}px;"
+.tag-cloud
+  - tag_cloud.map do |tag,size|
+    = link_to tag, tag_path(tag.dup),  style: "font-size: #{size}em;"
