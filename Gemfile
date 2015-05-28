@@ -22,4 +22,5 @@ gem 'therubyracer'
 gem 'oj'
 
 # Translit
-gem 'translit', '~>0.1'
+# gem 'translit', '~>0.1' # Does not really support Ukrainian. Next one is much better.
+gem 'babosa', '~>1.0'

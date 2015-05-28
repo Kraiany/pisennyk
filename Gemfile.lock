@@ -8,6 +8,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    babosa (1.0.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     chunky_png (1.3.4)
@@ -143,7 +144,6 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
-    translit (0.1.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.0.13)
@@ -155,6 +155,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  babosa (~> 1.0)
   font-awesome-middleman
   middleman (~> 3.3.12)
   middleman-blog
@@ -164,4 +165,3 @@ DEPENDENCIES
   oj
   slim
   therubyracer
-  translit (~> 0.1)

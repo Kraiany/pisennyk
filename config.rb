@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'slim'
-require 'translit'
+require 'babosa'
 Slim::Engine.disable_option_validator!
 require 'pry'
 set :encoding, 'utf-8'
@@ -36,12 +36,11 @@ helpers do
 
   # Find songs that start with a given letter
   def starts_with(letter)
-    titled.find_all { |art| transliterated(art.data.title[0]) == transliterated(letter) }
+    titled.find_all { |art| transliterated(art.dup.data.title[0]) == transliterated(letter.dup) }
   end
 
   def alphabet
-    #("а".."я").to_a + %w(і ґ є) - %w{ы э ё ъ}
-    ["А", "Б", "В", "Г", "Ґ", "Д", "Е", "Є", "Ж", "З", "И", "І", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ю", "Я"]
+    @alphabet ||= "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЮЬЯ".split('')
   end
 
   # Find all articles that have tags.
@@ -74,7 +73,7 @@ helpers do
   end
 
   def transliterated(word)
-    Translit.convert(word, :english)
+    word.to_slug.transliterate(:ukrainian).to_s
       .downcase
       .gsub(/[^A-Za-z0-9]/i,'_')
   end
