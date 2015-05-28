@@ -3,7 +3,7 @@ layout: simple
 title: "Пісні за алфавітом"
 ---
 
-| </pre>
 center
   - alphabet.each do |letter|
-    = link_to letter, path_to_letter(letter.dup), class: "letter-button btn btn-primary"
+    - articles = starts_with(letter)
+    = link_to letter, path_to_letter(letter.dup), class: "letter-button btn btn-primary #{articles.empty? ? 'disabled' : ''}"
