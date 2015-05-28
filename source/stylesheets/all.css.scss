@@ -95,6 +95,14 @@ h1 {
     }
 }
 
+.btn-nav {
+    @media all and (max-width: 768px) {
+        margin-bottom: 1ex;
+    }
+    @media all and (min-width: 767px) {
+        border: 0;
+    }
+}
 .letter-button {
     margin: 5px;
     white-space: nowrap;
