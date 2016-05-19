@@ -1,0 +1,4 @@
+- if current_page.data.tags
+  i.fa.fa-tags
+  - current_page.data.tags.each do |tag|
+    =<> link_to tag, tag_path(tag.dup)

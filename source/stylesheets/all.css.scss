@@ -29,6 +29,8 @@ h3{
 p, pre{
     font-size: 1em;
     line-height: 1.618em;
+    border: 0;
+    background-color: transparent;
 }
 
 @media all and (min-width: 960px) {

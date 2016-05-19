@@ -5,10 +5,6 @@ Slim::Engine.disable_option_validator!
 require 'pry'
 set :encoding, 'utf-8'
 set :index_file, 'index.html'
-set :css_dir, 'assets/stylesheets'
-set :js_dir, 'assets/javascripts'
-set :images_dir, 'assets/images'
-set :partials_dir, 'partials'
 ###
 
 # Automatic image dimensions on image_tag helper
@@ -20,10 +16,9 @@ configure :development do
 end
 
 set :css_dir, 'stylesheets'
-
 set :js_dir, 'javascripts'
-
 set :images_dir, 'images'
+set :partials_dir, 'partials'
 
 helpers do
 
@@ -153,6 +148,7 @@ configure :build do
   activate :asset_hash
   activate :gzip
   ignore '*.less'
+  ignore 'readme.md'
   ignore(/Icon\r$/)
   ignore(/\.DS_Store/)
   ignore(/^assets\/stylesheets\/(?!all).*\.css/)
