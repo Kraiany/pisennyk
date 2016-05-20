@@ -9,6 +9,9 @@ html
     = stylesheet_link_tag "all",     "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 
     = javascript_include_tag  "all"
+    - unless development?
+      = javascript_include_tag  "analytics"
+
   body class="#{page_classes}"
     = partial :nav
     .col-sm-12.col-xs-12.col-md-8.col-md-offset-2
