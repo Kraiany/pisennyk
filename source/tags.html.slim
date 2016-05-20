@@ -7,7 +7,8 @@ title: Позначки (теги)
 - @title = capture
   i.fa.fa-lg.fa-tags
   =<> current_page.data.title
-
+hr
 .tag-cloud
   - tag_cloud.map do |tag,size|
     =<> link_to tag, tag_path(tag.dup),  style: "font-size: #{size}em;"
+hr

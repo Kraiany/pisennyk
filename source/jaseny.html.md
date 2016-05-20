@@ -1,5 +1,8 @@
 ---
 title: Ясени
+youtube: rSCSeUxaEHI
+tags:
+  - естрада
 ---
 
 Ясени, ясени,
