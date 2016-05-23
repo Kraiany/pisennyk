@@ -22,11 +22,19 @@ set :partials_dir, 'partials'
 
 helpers do
 
+  def skip_index_files
+    ["index.html", "tag.html", "tags.html", "letters.html"]
+  end
+
+  def skip?(resource)
+    skip_index_files.include?(resource.destination_path)
+  end
+
   # Find all songs that have title.
   def titled
     sitemap
       .resources
-      .find_all { |res| !res.data.title.nil? }
+      .find_all  { |res| !res.data.title.nil? && !skip?(res) }
   end
 
   # Find songs that start with a given letter

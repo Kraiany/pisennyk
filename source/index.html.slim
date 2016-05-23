@@ -2,8 +2,9 @@
 layout: simple
 title: Список пісень
 ---
-- exclude = ["index.html", "tags.html"]
+- exclude = ["index.html", "tags.html", "letters.html"]
+- exclude_regex  = %r{/(index|tags|tag|letters)\.html$}
+
 - titled.sort { |a,b| a.data.title <=> b.data.title }.each_with_index do |art,idx|
-  - if !exclude.include?(current_page.url)
-    = link_to "#{idx+1} : #{art.data.title}", art.url, class: 'song_title btn btn-primary'
-    br
+  = link_to "#{idx+1} : #{art.data.title}", art.url, class: 'song_title btn btn-primary'
+  br
