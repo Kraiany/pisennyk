@@ -34,7 +34,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.7)
-    execjs (2.5.2)
+    execjs (2.7.0)
     ffi (1.12.2)
     font-awesome-middleman (4.2.3)
       middleman-core (~> 3.0)
@@ -148,7 +148,7 @@ GEM
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
     uber (0.0.15)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
 
