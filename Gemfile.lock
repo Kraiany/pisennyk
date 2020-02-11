@@ -33,7 +33,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
-    eventmachine (1.0.7)
+    eventmachine (1.2.7)
     execjs (2.7.0)
     ffi (1.12.2)
     font-awesome-middleman (4.2.3)
@@ -82,11 +82,10 @@ GEM
       rack-test (~> 0.6.2)
       thor (>= 0.15.2, < 2.0)
       tilt (~> 1.4.1, < 2.0)
-    middleman-livereload (3.1.1)
-      em-websocket (>= 0.2.0)
-      middleman-core (>= 3.0.2)
-      multi_json (~> 1.0)
-      rack-livereload
+    middleman-livereload (3.4.6)
+      em-websocket (~> 0.5.1)
+      middleman-core (>= 3.3)
+      rack-livereload (~> 0.3.15)
     middleman-minify-html (3.4.1)
       htmlcompressor (~> 0.2.0)
       middleman-core (>= 3.2)
@@ -112,7 +111,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.13)
-    rack-livereload (0.3.15)
+    rack-livereload (0.3.17)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -160,7 +159,7 @@ DEPENDENCIES
   font-awesome-middleman
   middleman (~> 3.3.12)
   middleman-blog
-  middleman-livereload (~> 3.1.0)
+  middleman-livereload (~> 3.4.6)
   middleman-minify-html
   middleman-pry
   oj
