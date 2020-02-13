@@ -38,7 +38,8 @@ GEM
     ffi (1.12.2)
     font-awesome-middleman (4.2.3)
       middleman-core (~> 3.0)
-    haml (4.0.6)
+    haml (5.1.2)
+      temple (>= 0.8.0)
       tilt
     hike (1.2.3)
     hitimes (2.0.0)
