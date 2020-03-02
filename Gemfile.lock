@@ -39,7 +39,7 @@ GEM
     eventmachine (1.2.7)
     execjs (2.7.0)
     ffi (1.12.2)
-    font-awesome-middleman (4.2.3)
+    font-awesome-middleman (4.5.0)
       middleman-core (~> 3.0)
     haml (5.1.2)
       temple (>= 0.8.0)
