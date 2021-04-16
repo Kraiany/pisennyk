@@ -6,7 +6,7 @@ ruby "2.6.5"
 gem "middleman", "~>3.4.1"
 
 # Live-reloading plugin
-gem "middleman-livereload", "~> 3.4.6"
+gem "middleman-livereload", "~> 3.4.7"
 
 gem 'middleman-pry'
 gem 'middleman-blog'
