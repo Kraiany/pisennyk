@@ -9,6 +9,9 @@ on:
       - master
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build
@@ -24,3 +27,9 @@ jobs:
       - name: Build
         shell: bash
         run: bundle exec middleman build
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
